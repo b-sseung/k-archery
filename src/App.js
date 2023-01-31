@@ -3,14 +3,31 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Result from "./pages/Result";
 import Simulation from "./pages/Simulation";
+import Record from "./pages/simulation/Record";
+import Tournament from "./pages/simulation/Tournament";
+import Leaguematch from "./pages/simulation/Leaguematch";
 
 const App = () => {
+  console.log("새로고침");
+
   return (
-    <Routes>
-      <Route path="/" element={<Home></Home>}></Route>
-      <Route path="/result" element={<Result></Result>}></Route>
-      <Route path="/simulation" element={<Simulation></Simulation>}></Route>
-    </Routes>
+    <div>
+      {false ? <div>Header</div> : ""}
+      <Routes exact={true}>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/result" element={<Result></Result>}></Route>
+        <Route path="/simulation" element={<Simulation></Simulation>}></Route>
+        <Route path="/simulation/record" element={<Record></Record>}></Route>
+        <Route
+          path="/simulation/tournament"
+          element={<Tournament></Tournament>}
+        ></Route>
+        <Route
+          path="/simulation/leaguematcch"
+          element={<Leaguematch></Leaguematch>}
+        ></Route>
+      </Routes>
+    </div>
   );
 };
 

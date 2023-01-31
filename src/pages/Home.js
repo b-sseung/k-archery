@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
-      <button>
+      <div>
         <Link to="/result">결과 검색</Link>
-      </button>
-      <button>
+      </div>
+      <div>
         <Link to="/simulation">모의 계산</Link>
-      </button>
+      </div>
     </div>
   );
 };
