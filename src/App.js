@@ -1,18 +1,19 @@
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Result from "./pages/Result";
-import Simulation from "./pages/Simulation";
-import Record from "./pages/simulation/Record";
-import Tournament from "./pages/simulation/Tournament";
-import Leaguematch from "./pages/simulation/Leaguematch";
+import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import Result from './pages/Result';
+import Simulation from './pages/Simulation';
+import Record from './pages/simulation/Record';
+import Tournament from './pages/simulation/Tournament';
+import Leaguematch from './pages/simulation/Leaguematch';
+import AddTurn from './pages/simulation/AddTurn';
 
 const App = () => {
-  console.log("새로고침");
+  console.log('새로고침');
 
   return (
     <div>
-      {false ? <div>Header</div> : ""}
+      {false ? <div>Header</div> : ''}
       <Routes exact={true}>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/result" element={<Result></Result>}></Route>
@@ -23,8 +24,12 @@ const App = () => {
           element={<Tournament></Tournament>}
         ></Route>
         <Route
-          path="/simulation/leaguematcch"
+          path="/simulation/leaguematch"
           element={<Leaguematch></Leaguematch>}
+        ></Route>
+        <Route
+          path="/simulation/:games/add-turn"
+          element={<AddTurn></AddTurn>}
         ></Route>
       </Routes>
     </div>

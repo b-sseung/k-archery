@@ -19,7 +19,7 @@ export const reset = createAction(RESET, () => {});
 
 const initialState = {
   input: '',
-  turns: [
+  records: [
     { id: 1, text: '' },
     { id: 2, text: '' },
   ],
@@ -33,15 +33,15 @@ const recordgames = handleActions(
     }),
     [INSERT]: (state, action) => ({
       ...state,
-      turns: state.records.concat(action.payload),
+      records: state.records.concat(action.payload),
     }),
     [REMOVE]: (state, action) => ({
       ...state,
-      turns: state.turns.filter((turn) => turn.id !== action.payload),
+      records: state.records.filter((turn) => turn.id !== action.payload),
     }),
     [RESET]: (state, action) => ({
       ...state,
-      turns: [],
+      records: [],
     }),
   },
   initialState,
