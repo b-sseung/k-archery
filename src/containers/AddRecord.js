@@ -6,6 +6,8 @@ import {
   remove,
 } from '../modules/recordgames';
 import { MdAdd } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const AddRecord = ({
   input,
@@ -16,6 +18,9 @@ const AddRecord = ({
   insert,
   remove,
 }) => {
+  const [visibleArray, setVisibleArray] = useState([]);
+  const navigate = useNavigate();
+
   const selectOptionArray = [
     <option key={'0'} value={0}>
       선택
@@ -38,17 +43,33 @@ const AddRecord = ({
     }
     return false;
   };
+
+  const tableCut = () => {
+    let cutArray = input.split('\n');
+    let result = [];
+    for (let index = 0; index < cutArray.length; index++) {
+      result.push(<div key={index}>{cutArray[index]}</div>);
+    }
+    setVisibleArray(result);
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
+    if (selectOption === '0') {
+      alert('회차를 선택해주세요.');
+      return;
+    }
     if (onCheckTurn()) {
-      if (!window.confirm('이미 등록된 회차입니다. 등록하시겠습니까?')) {
+      if (!window.confirm('이미 등록된 회차입니다. 재등록하시겠습니까?')) {
         return;
       } else {
         remove(selectOption);
       }
     }
     insert(selectOption, input);
-    changeInput('');
+    // changeInput('');
+    tableCut();
+    // navigate('/simulation/record');
   };
 
   const onChangeInput = (e) => {
@@ -77,6 +98,7 @@ const AddRecord = ({
           <MdAdd />
         </button>
       </form>
+      {<div>{visibleArray}</div>}
     </div>
   );
 };
