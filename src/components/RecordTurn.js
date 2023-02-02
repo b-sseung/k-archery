@@ -2,10 +2,14 @@ import { MdRemoveCircleOutline } from 'react-icons/md';
 import React from 'react';
 
 const RecordTurnItem = ({ turn, onRemove }) => {
-  const { id } = turn;
+  const { id, text } = turn;
+
+  const onRead = () => {
+    console.log(text);
+  };
 
   return (
-    <div className={`${id}`}>
+    <div className={`${id}`} onClick={() => onRead()}>
       <div>{`${id}회차`}</div>
       <div className="remove" onClick={() => onRemove(id)}>
         <MdRemoveCircleOutline />

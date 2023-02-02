@@ -3,7 +3,7 @@ import AddRecord from '../../containers/AddRecord';
 
 const AddTurn = () => {
   const params = useParams();
-  console.log(params.games);
+
   return (
     <div>
       {params.games === 'record' ? (
