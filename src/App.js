@@ -7,10 +7,9 @@ import Record from './pages/simulation/Record';
 import Tournament from './pages/simulation/Tournament';
 import Leaguematch from './pages/simulation/Leaguematch';
 import AddTurn from './pages/simulation/AddTurn';
+import Calculation from './pages/simulation/Calculation';
 
 const App = () => {
-  console.log('새로고침');
-
   return (
     <div>
       {false ? <div>Header</div> : ''}
@@ -30,6 +29,10 @@ const App = () => {
         <Route
           path="/simulation/:games/add-turn"
           element={<AddTurn></AddTurn>}
+        ></Route>
+        <Route
+          path="/simulation/:games/calculation"
+          element={<Calculation></Calculation>}
         ></Route>
       </Routes>
     </div>

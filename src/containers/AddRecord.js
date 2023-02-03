@@ -7,7 +7,6 @@ import {
 } from '../modules/recordgames';
 import { MdAdd } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 const AddRecord = ({
   input,
@@ -18,7 +17,6 @@ const AddRecord = ({
   insert,
   remove,
 }) => {
-  const [visibleArray, setVisibleArray] = useState([]);
   const navigate = useNavigate();
 
   const selectOptionArray = [
@@ -44,13 +42,16 @@ const AddRecord = ({
     return false;
   };
 
-  const tableCut = () => {
+  const onInsert = () => {
     let cutArray = input.split('\n');
     let result = [];
     for (let index = 0; index < cutArray.length; index++) {
       result.push(<div key={index}>{cutArray[index]}</div>);
     }
-    setVisibleArray(result);
+
+    insert(selectOption, result);
+    changeInput('');
+    navigate('/simulation/record');
   };
 
   const onSubmit = (e) => {
@@ -66,10 +67,7 @@ const AddRecord = ({
         remove(selectOption);
       }
     }
-    insert(selectOption, input);
-    // changeInput('');
-    tableCut();
-    // navigate('/simulation/record');
+    onInsert();
   };
 
   const onChangeInput = (e) => {
@@ -98,7 +96,6 @@ const AddRecord = ({
           <MdAdd />
         </button>
       </form>
-      {<div>{visibleArray}</div>}
     </div>
   );
 };

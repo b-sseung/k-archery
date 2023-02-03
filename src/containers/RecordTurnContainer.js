@@ -5,10 +5,14 @@ import { click, remove, reset } from '../modules/recordgames';
 import { Link } from 'react-router-dom';
 
 const RecordTurnContainer = ({ turns, click, remove, reset }) => {
+  console.log(turns);
   return (
     <div>
       <button>
         <Link to={'/simulation/record/add-turn'}>경기 추가</Link>
+      </button>
+      <button>
+        <Link to={'/simulation/record/calculation'}>계산하기</Link>
       </button>
       <button onClick={reset}>초기화</button>
       <RecordTurn
