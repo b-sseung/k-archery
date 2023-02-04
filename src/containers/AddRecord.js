@@ -7,6 +7,7 @@ import {
 } from '../modules/recordgames';
 import { MdAdd } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { record36People_PC } from '../caculationFunction/record_PC';
 
 const AddRecord = ({
   input,
@@ -42,16 +43,20 @@ const AddRecord = ({
     return false;
   };
 
-  const onInsert = () => {
-    let cutArray = input.split('\n');
-    let result = [];
-    for (let index = 0; index < cutArray.length; index++) {
-      result.push(<div key={index}>{cutArray[index]}</div>);
-    }
+  // const onInsert = () => {
+  //   const result = record36People_PC({ text: input });
+  //   insert(selectOption, result);
+  //   changeInput('');
+  //   navigate('/simulation/record');
+  // };
 
-    insert(selectOption, result);
-    changeInput('');
-    navigate('/simulation/record');
+  const onInsert = () => {
+    record36People_PC({ text: input }).then((result) => {
+      console.log(result);
+      insert(selectOption, result);
+      changeInput('');
+      navigate('/simulation/record');
+    });
   };
 
   const onSubmit = (e) => {

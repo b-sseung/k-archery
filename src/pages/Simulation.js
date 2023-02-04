@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Simulation = () => {
   return (
     <div>
       <div>
-        <Link to="./record">기록(15발)</Link>
+        <Link to="./record36">기록(36발)</Link>
+      </div>
+      <div>
+        <Link to="./record15">기록(15발)</Link>
       </div>
       <div>
         <Link to="./tournament">토너먼트</Link>

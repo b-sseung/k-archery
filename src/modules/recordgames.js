@@ -46,7 +46,7 @@ const recordgames = handleActions(
       ...state,
       records: state.records.map((turn) =>
         turn.id === action.payload
-          ? { ...turn, visible: true }
+          ? { ...turn, visible: !turn.visible }
           : { ...turn, visible: false },
       ),
     }),

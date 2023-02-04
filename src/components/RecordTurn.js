@@ -34,7 +34,11 @@ const RecordTurn = ({ turns, onVisible, onRemove }) => {
         })}
       </div>
       {turns.map((turn) => {
-        return turn.visible ? <div key={turn.id}>{turn.text}</div> : '';
+        return turn.visible ? (
+          <div key={turn.id}>{JSON.stringify(turn.text)}</div>
+        ) : (
+          ''
+        );
       })}
     </div>
   );
