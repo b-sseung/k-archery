@@ -6,7 +6,7 @@ const AddTurn = () => {
 
   return (
     <div>
-      {params.games === 'record' ? (
+      {params.games === 'record36' ? (
         <AddRecord></AddRecord>
       ) : (
         <div>추가하기</div>
