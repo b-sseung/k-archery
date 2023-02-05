@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
-import AddRecord from '../../containers/AddRecord';
+import { useParams, useLocation } from 'react-router-dom';
+import AddRecord from '../../components/record/AddRecord';
 
 const AddTurn = () => {
   const params = useParams();

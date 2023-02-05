@@ -28,7 +28,7 @@ export const remove = createAction(REMOVE, (id) => id);
 
 export const reset = createAction(RESET, () => {});
 
-const recordgames = handleActions(
+const record36 = handleActions(
   {
     [CHANGE_INPUT]: (state, action) => ({
       ...state,
@@ -62,4 +62,4 @@ const recordgames = handleActions(
   initialState,
 );
 
-export default recordgames;
+export default record36;

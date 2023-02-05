@@ -1,11 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import RecordTurn from '../components/RecordTurn';
-import { click, remove, reset } from '../modules/recordgames';
+import RecordTurn from './RecordTurn';
 import { Link } from 'react-router-dom';
 
 const RecordTurnContainer = ({ url, turns, click, remove, reset }) => {
-  console.log(turns);
   return (
     <div>
       <button>
@@ -24,13 +21,4 @@ const RecordTurnContainer = ({ url, turns, click, remove, reset }) => {
   );
 };
 
-export default connect(
-  ({ recordgames }) => ({
-    turns: recordgames.records,
-  }),
-  {
-    click,
-    remove,
-    reset,
-  },
-)(RecordTurnContainer);
+export default RecordTurnContainer;

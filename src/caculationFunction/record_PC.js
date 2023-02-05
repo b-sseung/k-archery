@@ -1,3 +1,7 @@
+export const dataSave = (text, state) => {
+  sessionStorage.setItem(text, state);
+};
+
 export const record36People_PC = ({ text }) => {
   const promise = new Promise((resolve, reject) => {
     console.log(text);
@@ -33,19 +37,4 @@ export const record36People_PC = ({ text }) => {
   });
 
   return promise;
-
-  //   while ((word = br.readLine()) != "") {
-  //     String[] s = word.split(" ");
-  // //				bw.write("word : " + word);
-
-  // //				bw.write(s.length);
-
-  //     String name = s[4] +" " + s[5];
-  //     People p = list.getOrDefault(name, new People(s[0], s[1], s[2], s[4], s[5]));
-  //     p.addGame(s[6], s[7], s[8], s[9]);
-
-  //     list.put(name, p);
-
-  //     while (br.readLine().split("	").length != 3) {}
-  //   }
 };

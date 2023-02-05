@@ -1,8 +1,8 @@
-import { combineReducers } from "redux";
-import recordgames from "./recordgames";
+import { combineReducers } from 'redux';
+import record36 from './record36';
 
 const rootReducer = combineReducers({
-  recordgames,
+  record36,
 });
 
 export default rootReducer;

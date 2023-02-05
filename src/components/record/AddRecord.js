@@ -4,12 +4,16 @@ import {
   changeSelect,
   insert,
   remove,
-} from '../modules/recordgames';
+} from '../../modules/record36';
 import { MdAdd } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
-import { record36People_PC } from '../caculationFunction/record_PC';
+import { useNavigate, useLocation } from 'react-router-dom';
+import {
+  dataSave,
+  record36People_PC,
+} from '../../caculationFunction/record_PC';
 
 const AddRecord = ({
+  state,
   input,
   selectOption,
   turns,
@@ -43,19 +47,13 @@ const AddRecord = ({
     return false;
   };
 
-  // const onInsert = () => {
-  //   const result = record36People_PC({ text: input });
-  //   insert(selectOption, result);
-  //   changeInput('');
-  //   navigate('/simulation/record');
-  // };
-
   const onInsert = () => {
     record36People_PC({ text: input }).then((result) => {
       console.log(result);
       insert(selectOption, result);
       changeInput('');
       navigate('/simulation/record');
+      dataSave('record36');
     });
   };
 
@@ -106,10 +104,11 @@ const AddRecord = ({
 };
 
 export default connect(
-  ({ recordgames }) => ({
-    input: recordgames.input,
-    selectOption: recordgames.selectOption,
-    turns: recordgames.records,
+  ({ record36 }) => ({
+    state: record36,
+    input: record36.input,
+    selectOption: record36.selectOption,
+    turns: record36.records,
   }),
   {
     changeInput,
