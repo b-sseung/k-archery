@@ -1,10 +1,11 @@
 export const dataSave = (text, state) => {
-  sessionStorage.setItem(text, state);
+  console.log(state);
+  sessionStorage.setItem(text, JSON.stringify(state));
+  console.log('저장');
 };
 
 export const record36People_PC = ({ text }) => {
   const promise = new Promise((resolve, reject) => {
-    console.log(text);
     let cutArray = text.split('\n');
     let result = [];
     let index = 0;
@@ -20,15 +21,14 @@ export const record36People_PC = ({ text }) => {
       let dataLine = cutArray[index].split(' ');
       let name = `${dataLine[4]} ${dataLine[5]}`;
 
-      console.log(dataLine);
-      result.push({
-        [name]: {
-          total: dataLine[6],
-          hit: dataLine[7],
-          ten: dataLine[8],
-          xTen: dataLine[9],
-        },
-      });
+      result[name] = {
+        name: dataLine[4],
+        belong: dataLine[5],
+        total: dataLine[6],
+        hit: dataLine[7],
+        ten: dataLine[8],
+        xTen: dataLine[9],
+      };
 
       index += 9;
     }

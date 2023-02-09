@@ -1,5 +1,5 @@
 import React from 'react';
-import RecordTurn from './RecordTurn';
+import RecordTurn from '../components/record/RecordTurn';
 import { Link } from 'react-router-dom';
 
 const RecordTurnContainer = ({ url, turns, click, remove, reset }) => {

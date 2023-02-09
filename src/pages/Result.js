@@ -1,9 +1,8 @@
+import { googleInit, getSheetsName } from '../api/Google';
+import ResultContainer from '../containers/ResultContainer';
+
 const Result = () => {
-  return (
-    <div>
-      <p>result 화면</p>
-    </div>
-  );
+  return <ResultContainer></ResultContainer>;
 };
 
 export default Result;

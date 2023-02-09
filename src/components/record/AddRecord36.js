@@ -52,8 +52,8 @@ const AddRecord = ({
       console.log(result);
       insert(selectOption, result);
       changeInput('');
-      navigate('/simulation/record');
-      dataSave('record36');
+      navigate('/simulation/record36');
+      dataSave('record36', state);
     });
   };
 

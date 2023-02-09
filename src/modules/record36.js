@@ -1,18 +1,21 @@
 import { createAction, handleActions } from 'redux-actions';
 
-const CHANGE_INPUT = 'record/CHANGE_INPUT';
-const CHANGE_SELECT = 'record/CHANE_SELECT';
-const INSERT = 'record/INSERT';
-const CLICK = 'record/CLICK';
-const REMOVE = 'record/REMOVE';
-const RESET = 'record/RESET';
+const CHANGE_INPUT = 'record36/CHANGE_INPUT';
+const CHANGE_SELECT = 'record36/CHANE_SELECT';
+const INSERT = 'record36/INSERT';
+const CLICK = 'record36/CLICK';
+const REMOVE = 'record36/REMOVE';
+const RESET = 'record36/RESET';
 
-const initialState = {
-  input: '',
-  selectOption: '0',
-  records: [],
-};
+const initialState = !sessionStorage.getItem('record36')
+  ? {
+      input: '',
+      selectOption: '0',
+      records: [],
+    }
+  : JSON.parse(sessionStorage.getItem('record36'));
 
+console.log(initialState);
 export const changeInput = createAction(CHANGE_INPUT, (input) => input);
 export const changeSelect = createAction(CHANGE_SELECT, (value) => value);
 

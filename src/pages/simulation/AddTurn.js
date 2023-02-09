@@ -1,5 +1,5 @@
 import { useParams, useLocation } from 'react-router-dom';
-import AddRecord from '../../components/record/AddRecord';
+import AddRecord36 from '../../components/record/AddRecord36';
 
 const AddTurn = () => {
   const params = useParams();
@@ -7,7 +7,7 @@ const AddTurn = () => {
   return (
     <div>
       {params.games === 'record36' ? (
-        <AddRecord></AddRecord>
+        <AddRecord36></AddRecord36>
       ) : (
         <div>추가하기</div>
       )}
