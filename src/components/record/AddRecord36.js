@@ -6,11 +6,8 @@ import {
   remove,
 } from '../../modules/record36';
 import { MdAdd } from 'react-icons/md';
-import { useNavigate, useLocation } from 'react-router-dom';
-import {
-  dataSave,
-  record36People_PC,
-} from '../../caculationFunction/record_PC';
+import { useNavigate } from 'react-router-dom';
+import { record36People_PC } from '../../matchResultFunction/record_PC';
 
 const AddRecord = ({
   state,
@@ -52,8 +49,8 @@ const AddRecord = ({
       console.log(result);
       insert(selectOption, result);
       changeInput('');
+      changeSelect(0);
       navigate('/simulation/record36');
-      dataSave('record36', state);
     });
   };
 

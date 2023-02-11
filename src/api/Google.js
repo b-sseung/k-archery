@@ -27,7 +27,7 @@ export const googleInit = () => {
   return promise;
 };
 
-export const getSheetsName = () => {
+export const getSheetsTitle = () => {
   const promise = new Promise((resolve, reject) => {
     var params = {
       spreadsheetId: '17nVqz6tt4GQUz6AiCFLsnpbrcu0FXylKgeZN2m2koao',

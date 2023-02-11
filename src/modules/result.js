@@ -7,7 +7,7 @@ const UPDATE_SHEET = 'result/UPDATE_SHEET';
 const initialState = {
   googleInit: false,
   titles: [],
-  sheetsData: [],
+  sheet: [],
 };
 
 export const changeTitles = createAction(CHANGE_TITLES, (titles) => titles);
@@ -29,7 +29,7 @@ const result = handleActions(
     }),
     [UPDATE_SHEET]: (state, action) => ({
       ...state,
-      sheetsData: action.payload,
+      sheet: action.payload,
     }),
   },
   initialState,

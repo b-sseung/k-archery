@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Result from './pages/Result';
 import Simulation from './pages/Simulation';
 import AddTurn from './pages/simulation/AddTurn';
-import Calculation from './pages/simulation/Calculation';
+import MatchResult from './pages/simulation/MatchResult';
 import SimulationPage from './pages/SimulationPage';
 
 const App = () => {
@@ -24,8 +24,8 @@ const App = () => {
           element={<AddTurn></AddTurn>}
         ></Route>
         <Route
-          path="/simulation/:games/calculation"
-          element={<Calculation></Calculation>}
+          path="/simulation/:games/match-result"
+          element={<MatchResult></MatchResult>}
         ></Route>
       </Routes>
     </div>

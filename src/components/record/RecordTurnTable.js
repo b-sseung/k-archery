@@ -3,8 +3,8 @@ const RecordTHead = () => {
   return (
     <thead>
       <tr>
-        {head.map((value) => {
-          return <th>{value}</th>;
+        {head.map((value, index) => {
+          return <th key={index}>{value}</th>;
         })}
       </tr>
     </thead>
@@ -26,6 +26,7 @@ const RecordTBody = ({ data }) => {
 
 const RecordTurnTable = ({ datas }) => {
   const keys = Object.keys(datas);
+  console.log(typeof keys);
   return (
     <table>
       <RecordTHead key={'head'}></RecordTHead>

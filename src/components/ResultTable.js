@@ -11,7 +11,6 @@ const ResultTableItem = ({ data }) => {
 const ResultTable = ({ values }) => {
   const head = values[0];
   const body = values.slice(1);
-  console.log(body);
   return (
     <table>
       <thead>
