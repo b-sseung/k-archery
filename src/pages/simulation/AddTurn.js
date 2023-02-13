@@ -1,13 +1,12 @@
 import { useParams, useLocation } from 'react-router-dom';
-import AddRecord36 from '../../components/record/AddRecord36';
+import AddRecord from '../../components/record/AddRecord';
 
 const AddTurn = () => {
   const params = useParams();
-
   return (
     <div>
-      {params.games === 'record36' ? (
-        <AddRecord36></AddRecord36>
+      {params.games === 'record36' || params.games === 'record15' ? (
+        <AddRecord url={params.games}></AddRecord>
       ) : (
         <div>추가하기</div>
       )}

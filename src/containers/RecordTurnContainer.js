@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { dataSave } from '../matchResultFunction/record_PC';
 
 const RecordTurnContainer = ({ url, state, turns, click, remove, reset }) => {
-  dataSave('record36', state);
+  dataSave(url, state);
   return (
     <div>
       <button>

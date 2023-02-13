@@ -2,7 +2,7 @@ export const dataSave = (text, state) => {
   sessionStorage.setItem(text, JSON.stringify(state));
 };
 
-export const record36People_PC = ({ text }) => {
+export const addRecordData = ({ text, games }) => {
   const promise = new Promise((resolve, reject) => {
     let cutArray = text.split('\n');
     let result = [];
@@ -27,7 +27,7 @@ export const record36People_PC = ({ text }) => {
         xTen: dataLine[9],
       });
 
-      index += 9;
+      index += games === 'record36' ? 9 : 8;
     }
 
     resolve(result);
@@ -73,7 +73,7 @@ export const setPreRank = (data, peoples) => {
   });
 };
 
-export const getRanking = (peoples) => {
+export const getRanking = (peoples, limit) => {
   const arrayPeoples = Array.from(peoples);
 
   arrayPeoples.sort((people1, people2) => {
@@ -102,6 +102,10 @@ export const getRanking = (peoples) => {
     return 0;
   });
 
+  arrayPeoples.forEach((people, index) => {
+    people[1].setRank(index, limit);
+  });
+
   return arrayPeoples;
 };
 
@@ -115,6 +119,8 @@ function People({ name, belong }) {
   this.xTen = 0;
   this.ave = 0;
   this.preRank = -1;
+  this.rank = -1;
+  this.points = 0;
 
   this.addGame = ({ total, hit, ten, xTen }) => {
     this.total.push(total);
@@ -127,5 +133,10 @@ function People({ name, belong }) {
 
   this.setPreRank = (rank) => {
     this.preRank = rank;
+  };
+
+  this.setRank = (index, limit) => {
+    this.rank = index + 1;
+    this.points = index < limit ? limit - index : 0;
   };
 }

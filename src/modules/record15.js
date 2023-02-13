@@ -1,37 +1,37 @@
 import { createAction, handleActions } from 'redux-actions';
 
-const CHANGE_INPUT = 'record36/CHANGE_INPUT';
-const CHANGE_SELECT = 'record36/CHANE_SELECT';
-const INSERT = 'record36/INSERT';
-const CLICK = 'record36/CLICK';
-const REMOVE = 'record36/REMOVE';
-const RESET = 'record36/RESET';
+const CHANGE_INPUT = 'record15/CHANGE_INPUT';
+const CHANGE_SELECT = 'record15/CHANE_SELECT';
+const INSERT = 'record15/INSERT';
+const CLICK = 'record15/CLICK';
+const REMOVE = 'record15/REMOVE';
+const RESET = 'record15/RESET';
 
-const initialState = !sessionStorage.getItem('record36')
+const initialState = !sessionStorage.getItem('record15')
   ? {
       input: '',
       selectOption: '0',
       records: [],
     }
-  : JSON.parse(sessionStorage.getItem('record36'));
+  : JSON.parse(sessionStorage.getItem('record15'));
 
 console.log(initialState);
-export const changeInput36 = createAction(CHANGE_INPUT, (input) => input);
-export const changeSelect36 = createAction(CHANGE_SELECT, (value) => value);
+export const changeInput15 = createAction(CHANGE_INPUT, (input) => input);
+export const changeSelect15 = createAction(CHANGE_SELECT, (value) => value);
 
-export const insert36 = createAction(INSERT, (index, text) => ({
+export const insert15 = createAction(INSERT, (index, text) => ({
   id: index,
   text,
   visible: false,
 }));
 
-export const click36 = createAction(CLICK, (id) => id);
+export const click15 = createAction(CLICK, (id) => id);
 
-export const remove36 = createAction(REMOVE, (id) => id);
+export const remove15 = createAction(REMOVE, (id) => id);
 
-export const reset36 = createAction(RESET, () => {});
+export const reset15 = createAction(RESET, () => {});
 
-const record36 = handleActions(
+const record15 = handleActions(
   {
     [CHANGE_INPUT]: (state, action) => ({
       ...state,
@@ -65,4 +65,4 @@ const record36 = handleActions(
   initialState,
 );
 
-export default record36;
+export default record15;
