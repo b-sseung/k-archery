@@ -11,14 +11,14 @@ const REMOVE_TURNS = 'tournament/REMOVE_TURNS';
 const RESET_MATCHS = 'tournament/RESET_MATCHS';
 const RESET_TURNS = 'tournament/RESET_TURNS';
 
-const initialState = !sessionStorage.getItem('tournament')
+const initialState = !localStorage.getItem('tournament')
   ? {
       input: '',
       selectOption: '0',
       matchs: [],
       turns: [],
     }
-  : JSON.parse(sessionStorage.getItem('tournament'));
+  : JSON.parse(localStorage.getItem('tournament'));
 
 console.log(initialState);
 

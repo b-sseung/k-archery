@@ -7,13 +7,13 @@ const CLICK = 'record36/CLICK';
 const REMOVE = 'record36/REMOVE';
 const RESET = 'record36/RESET';
 
-const initialState = !sessionStorage.getItem('record36')
+const initialState = !localStorage.getItem('record36')
   ? {
       input: '',
       selectOption: '0',
       records: [],
     }
-  : JSON.parse(sessionStorage.getItem('record36'));
+  : JSON.parse(localStorage.getItem('record36'));
 
 console.log(initialState);
 export const changeInput36 = createAction(CHANGE_INPUT, (input) => input);

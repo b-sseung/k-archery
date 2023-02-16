@@ -3,6 +3,7 @@ import { useState } from 'react';
 import GoogleSheetSelect from '../components/GoogleSheetSelect';
 import { getSheetData } from '../api/Google';
 import { updateSheet } from '../modules/result';
+import { insert } from '../modules/totalResult';
 import {
   getRanking,
   setPeopleMap,
@@ -17,6 +18,7 @@ const RecordResultContainer = ({
   record36,
   record15,
   updateSheet,
+  insertTotalResult,
 }) => {
   const [title, setTitle] = useState('없음');
   const [limit, setLimit] = useState(
@@ -60,6 +62,11 @@ const RecordResultContainer = ({
     setResult(finalRank);
   };
 
+  const onSaveClick = () => {
+    let name = prompt('결과를 구분하기 위해 이름을 입력해주세요.', '무제');
+    insertTotalResult(name, result);
+  };
+
   return (
     <div>
       <div>
@@ -73,7 +80,10 @@ const RecordResultContainer = ({
       </div>
       <button onClick={onClick}>계산하기</button>
       {result.length > 0 && (
-        <RecordResultTable result={result}></RecordResultTable>
+        <div>
+          <button onClick={onSaveClick}>저장하기</button>
+          <RecordResultTable result={result}></RecordResultTable>
+        </div>
       )}
     </div>
   );
@@ -86,5 +96,5 @@ export default connect(
     record36: record36.records,
     record15: record15.records,
   }),
-  { updateSheet },
+  { updateSheet, insertTotalResult: insert },
 )(RecordResultContainer);

@@ -6,6 +6,7 @@ import Simulation from './pages/Simulation';
 import AddTurn from './pages/simulation/AddTurn';
 import MatchResult from './pages/simulation/MatchResult';
 import SimulationPage from './pages/SimulationPage';
+import MergeMatch from './pages/simulation/MergeResult';
 
 const App = () => {
   return (
@@ -26,6 +27,10 @@ const App = () => {
         <Route
           path="/simulation/:games/match-result"
           element={<MatchResult></MatchResult>}
+        ></Route>
+        <Route
+          path="/simulation/merge/:games"
+          element={<MergeMatch></MergeMatch>}
         ></Route>
       </Routes>
     </div>

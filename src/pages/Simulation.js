@@ -15,6 +15,9 @@ const Simulation = () => {
       <div>
         <Link to="./leaguematch">리그전</Link>
       </div>
+      <div>
+        <Link to="./merge/total-match">배점 및 경기 계산</Link>
+      </div>
     </div>
   );
 };

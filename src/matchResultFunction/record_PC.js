@@ -1,5 +1,5 @@
 export const dataSave = (text, state) => {
-  sessionStorage.setItem(text, JSON.stringify(state));
+  localStorage.setItem(text, JSON.stringify(state));
 };
 
 export const addRecordData = ({ text, games }) => {
