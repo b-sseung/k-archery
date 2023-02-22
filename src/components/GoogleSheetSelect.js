@@ -13,9 +13,12 @@ const GoogleSheetSelect = ({
   const location = useLocation();
 
   if (!initState) {
-    googleInit().then((value) => {
-      changeGoogleInit(value);
-    });
+    console.log('start');
+    googleInit()
+      .then((value) => {
+        changeGoogleInit(value);
+      })
+      .catch((e) => console.log(e));
   }
 
   if (initState && titles.length === 0) {

@@ -2,22 +2,27 @@ import { gapi } from 'gapi-script';
 import credentials from './credentials.json';
 
 export const googleInit = () => {
+  console.log('start2');
   const promise = new Promise((resolve, reject) => {
     const initClient = async () => {
-      var SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
+      var SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+      console.log('start3');
       await gapi.client
         .init({
           apiKey: credentials.API_KEY,
-          clientId: credentials.CLIENT_ID,
+          client_id: credentials.CLIENT_ID,
           scope: SCOPE,
           discoveryDocs: [
             'https://sheets.googleapis.com/$discovery/rest?version=v4',
           ],
         })
         .then(() => {
+          console.log('start4');
           resolve(true);
         })
-        .catch(() => {
+        .catch((e) => {
+          console.log('start5');
+          console.log(e);
           reject(false);
         });
     };
