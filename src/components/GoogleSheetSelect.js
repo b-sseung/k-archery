@@ -21,11 +21,11 @@ const GoogleSheetSelect = ({
       .catch((e) => console.log(e));
   }
 
-  if (initState && titles.length === 0) {
-    getSheetsTitle().then((response) => {
-      changeTitles(response);
-    });
-  }
+  // if (initState && titles.length === 0) {
+  //   getSheetsTitle().then((response) => {
+  //     changeTitles(response);
+  //   });
+  // }
 
   let resultOptions = [];
   resultOptions.push(

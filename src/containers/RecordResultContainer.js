@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import GoogleSheetSelect from '../components/GoogleSheetSelect';
-import { getSheetData } from '../api/Google';
+// import { getSheetData } from '../api/Google';
 import { updateSheet } from '../modules/result';
 import { insert } from '../modules/totalResult';
 import {
@@ -34,9 +34,9 @@ const RecordResultContainer = ({
     if (e.target.value === '-1') {
       updateSheet([]);
     } else {
-      getSheetData(titles[e.target.value]).then((res) => {
-        updateSheet(res);
-      });
+      // getSheetData(titles[e.target.value]).then((res) => {
+      //   updateSheet(res);
+      // });
     }
     setTitle(e.target.value === '-1' ? '없음' : titles[e.target.value]);
   };

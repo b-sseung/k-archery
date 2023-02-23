@@ -1,71 +1,19 @@
-import { gapi } from 'gapi-script';
+import { GoogleSpreadsheet } from 'google-spreadsheet';
 import credentials from './credentials.json';
 
 export const googleInit = () => {
-  console.log('start2');
-  const promise = new Promise((resolve, reject) => {
-    const initClient = async () => {
-      var SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
-      console.log('start3');
-      await gapi.client
-        .init({
-          apiKey: credentials.API_KEY,
-          client_id: credentials.CLIENT_ID,
-          scope: SCOPE,
-          discoveryDocs: [
-            'https://sheets.googleapis.com/$discovery/rest?version=v4',
-          ],
-        })
-        .then(() => {
-          console.log('start4');
-          resolve(true);
-        })
-        .catch((e) => {
-          console.log('start5');
-          console.log(e);
-          reject(false);
-        });
-    };
-    gapi.load('client:auth2', initClient);
-  });
+  const initClient = async () => {
+    const googleSheets = new GoogleSpreadsheet(
+      '17nVqz6tt4GQUz6AiCFLsnpbrcu0FXylKgeZN2m2koao',
+    );
 
-  return promise;
-};
+    await googleSheets.useServiceAccountAuth({
+      client_email: credentials.client_email,
+      private_key: credentials.private_key,
+    });
 
-export const getSheetsTitle = () => {
-  const promise = new Promise((resolve, reject) => {
-    var params = {
-      spreadsheetId: '17nVqz6tt4GQUz6AiCFLsnpbrcu0FXylKgeZN2m2koao',
-    };
-
-    gapi.client.sheets.spreadsheets.get(params).then((res) => {
-      let titles = [];
-
-      for (let sheet of res.result.sheets) {
-        titles.push(sheet.properties.title);
-      }
-      resolve(titles);
-    }).catch = (e) => {
-      reject('error: ' + e.result.error.message);
-    };
-  });
-
-  return promise;
-};
-
-export const getSheetData = (title) => {
-  const promise = new Promise((resolve, reject) => {
-    var params = {
-      spreadsheetId: '17nVqz6tt4GQUz6AiCFLsnpbrcu0FXylKgeZN2m2koao',
-      range: title,
-    };
-
-    gapi.client.sheets.spreadsheets.values.get(params).then((res) => {
-      resolve(res.result.values);
-    }).catch = (e) => {
-      reject('error: ' + e.result.error.message);
-    };
-  });
-
-  return promise;
+    await googleSheets.loadInfo();
+    console.log(googleSheets);
+  };
+  initClient();
 };
