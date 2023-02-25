@@ -33,12 +33,6 @@ const RecordResultContainer = ({
     if (e.target.value === '-1') {
       updateSheet([]);
     } else {
-<<<<<<< HEAD
-=======
-      // getSheetData(titles[e.target.value]).then((res) => {
-      //   updateSheet(res);
-      // });
->>>>>>> a566e21cea74992916cf0d8505117e50af07d608
     }
     setTitle(e.target.value === '-1' ? '없음' : titles[e.target.value]);
   };
