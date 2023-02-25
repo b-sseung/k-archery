@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { updateSheet } from '../modules/result';
-import { getSheetData } from '../api/Google';
 import loadable from '@loadable/component';
 import { useState } from 'react';
 import GoogleSheetSelect from '../components/GoogleSheetSelect';
@@ -15,9 +14,6 @@ const ResultContainer = ({ titles, sheet, updateSheet }) => {
   const onChangeSelect = (e) => {
     updateSheet([]);
     setSelectValue(e.target.value);
-    getSheetData(titles[e.target.value]).then((res) => {
-      updateSheet(res);
-    });
   };
 
   return (
