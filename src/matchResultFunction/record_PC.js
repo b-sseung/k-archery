@@ -99,7 +99,6 @@ export const getRanking = (peoples, limit) => {
         }
       }
     }
-    return 0;
   });
 
   arrayPeoples.forEach((people, index) => {
