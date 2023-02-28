@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { changeGoogleInit, changeTitles, updateSheet } from '../modules/result';
-import { googleInit, getSheetsTitle } from '../api/Google';
+import { GoogleInit, getSheetsTitle } from '../api/Google';
 
 const GoogleSheetSelect = ({
   initState,
@@ -13,7 +13,8 @@ const GoogleSheetSelect = ({
   const location = useLocation();
 
   if (!initState) {
-    googleInit().then((value) => {
+    GoogleInit().then((value) => {
+      console.log(value);
       changeGoogleInit(value);
     });
   }
