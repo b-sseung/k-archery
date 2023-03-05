@@ -3,8 +3,17 @@ import RecordTurn from '../components/record/RecordTurn';
 import { Link } from 'react-router-dom';
 import { dataSave } from '../matchResultFunction/record_PC';
 
-const RecordTurnContainer = ({ url, state, turns, click, remove, reset }) => {
+const RecordTurnContainer = ({
+  url,
+  results,
+  state,
+  turns,
+  click,
+  remove,
+  reset,
+}) => {
   dataSave(url, state);
+  dataSave('mergeResult', results);
   return (
     <div>
       <button>
