@@ -2,10 +2,11 @@ import { connect } from 'react-redux';
 import { click36, remove36, reset36 } from '../../modules/record36';
 import RecordTurnContainer from '../../containers/RecordTurnContainer';
 
-const Record36 = ({ state, turns, click, remove, reset }) => {
+const Record36 = ({ results, state, turns, click, remove, reset }) => {
   return (
     <RecordTurnContainer
       url={'record36'}
+      results={results}
       state={state}
       turns={turns}
       click={click}

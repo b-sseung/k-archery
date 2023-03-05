@@ -68,8 +68,6 @@ export const setPreRank = (data, peoples) => {
 
     let people = peoples.get(key);
     people.setPreRank(rank);
-
-    console.log(people);
   });
 };
 
@@ -94,7 +92,6 @@ export const getRanking = (peoples, limit) => {
               return p2.total[i] - p1.total[i];
             }
           }
-
           return p2.preRank - p1.preRank;
         }
       }

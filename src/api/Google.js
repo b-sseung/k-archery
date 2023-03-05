@@ -17,11 +17,9 @@ export const GoogleInit = () => {
           ],
         })
         .then(() => {
-          console.log('성공');
           resolve(true);
         })
         .catch(() => {
-          console.log('실패');
           reject(false);
         });
     };
@@ -65,6 +63,7 @@ export const getSheetData = (title) => {
     };
 
     window.gapi.client.sheets.spreadsheets.values.get(params).then((res) => {
+      console.log(res);
       resolve(res.result.values);
     }).catch = (e) => {
       reject('error: ' + e.result.error.message);

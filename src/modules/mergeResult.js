@@ -1,14 +1,14 @@
 import { createAction, handleActions } from 'redux-actions';
 
-const INSERT = 'record36/INSERT';
-const REMOVE = 'record36/REMOVE';
-const RESET = 'record36/RESET';
+const INSERT = 'mergeResult/INSERT';
+const REMOVE = 'mergeResult/REMOVE';
+const RESET = 'mergeResult/RESET';
 
-const initialState = !localStorage.getItem('totalResult')
+const initialState = !localStorage.getItem('mergeResult')
   ? {
       results: [],
     }
-  : JSON.parse(localStorage.getItem('totalResult'));
+  : JSON.parse(localStorage.getItem('mergeResult'));
 
 console.log(initialState);
 
@@ -21,7 +21,7 @@ export const remove = createAction(REMOVE, (id) => id);
 
 export const reset = createAction(RESET, () => {});
 
-const totalResult = handleActions(
+const mergeResult = handleActions(
   {
     [INSERT]: (state, action) => ({
       ...state,
@@ -39,4 +39,4 @@ const totalResult = handleActions(
   initialState,
 );
 
-export default totalResult;
+export default mergeResult;

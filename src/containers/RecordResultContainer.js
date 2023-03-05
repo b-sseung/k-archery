@@ -1,14 +1,17 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import GoogleSheetSelect from '../components/GoogleSheetSelect';
 import { updateSheet } from '../modules/result';
-import { insert } from '../modules/totalResult';
+import { insert } from '../modules/mergeResult';
 import {
   getRanking,
   setPeopleMap,
   setPreRank,
 } from '../matchResultFunction/record_PC';
 import RecordResultTable from '../components/record/RecordResultTable';
+import { getSheetData } from '../api/Google';
+
 //기록경기 계산
 const RecordResultContainer = ({
   match,
@@ -19,6 +22,8 @@ const RecordResultContainer = ({
   updateSheet,
   insertTotalResult,
 }) => {
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState('없음');
   const [limit, setLimit] = useState(
     document.querySelector('input') ? document.querySelector('input').value : 0,
@@ -33,6 +38,9 @@ const RecordResultContainer = ({
     if (e.target.value === '-1') {
       updateSheet([]);
     } else {
+      getSheetData(titles[e.target.value]).then((result) => {
+        updateSheet(result);
+      });
     }
     setTitle(e.target.value === '-1' ? '없음' : titles[e.target.value]);
   };
@@ -61,6 +69,8 @@ const RecordResultContainer = ({
   const onSaveClick = () => {
     let name = prompt('결과를 구분하기 위해 이름을 입력해주세요.', '무제');
     insertTotalResult(name, result);
+    console.log(insertTotalResult);
+    navigate(`/simulation/${match}`);
   };
 
   return (
@@ -86,11 +96,12 @@ const RecordResultContainer = ({
 };
 
 export default connect(
-  ({ result, record36, record15 }) => ({
+  ({ result, record36, record15, mergeResult }) => ({
     titles: result.titles,
     sheet: result.sheet,
     record36: record36.records,
     record15: record15.records,
+    results: mergeResult.results,
   }),
   { updateSheet, insertTotalResult: insert },
 )(RecordResultContainer);

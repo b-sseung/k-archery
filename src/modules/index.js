@@ -3,14 +3,14 @@ import record36 from './record36';
 import record15 from './record15';
 import tournament from './tournament';
 import result from './result';
-import totalResult from './totalResult';
+import mergeResult from './mergeResult';
 
 const rootReducer = combineReducers({
   record36,
   record15,
   tournament,
   result,
-  totalResult,
+  mergeResult,
 });
 
 export default rootReducer;

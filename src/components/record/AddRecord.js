@@ -78,7 +78,7 @@ const AddRecord = ({
   };
 
   const onInsert = () => {
-    addRecordData({ text: input }).then((result) => {
+    addRecordData({ text: input, games: url }).then((result) => {
       console.log(result);
       insert(selectOption, result);
       changeInput('');

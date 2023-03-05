@@ -21,7 +21,6 @@ const TableHead = () => {
 };
 
 const TableBody = ({ data }) => {
-  console.log(data);
   return (
     <tr>
       <td>{data.name}</td>

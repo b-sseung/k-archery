@@ -1,5 +1,7 @@
-const Tournament = () => {
-  return <div>토너먼트</div>;
+import TournamentContainer from '../../containers/TournamentContainer';
+
+const Tournament = ({ results }) => {
+  return <TournamentContainer results={results}></TournamentContainer>;
 };
 
 export default Tournament;

@@ -26,7 +26,6 @@ const RecordTBody = ({ data }) => {
 
 const RecordTurnTable = ({ datas }) => {
   const keys = Object.keys(datas);
-  console.log(typeof keys);
   return (
     <table>
       <RecordTHead key={'head'}></RecordTHead>
