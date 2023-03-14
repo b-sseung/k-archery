@@ -17,7 +17,8 @@ const Record15 = ({ results, state, turns, click, remove, reset }) => {
 };
 
 export default connect(
-  ({ record15 }) => ({
+  ({ record15, mergeResult }) => ({
+    results: mergeResult.results,
     state: record15,
     turns: record15.records,
   }),

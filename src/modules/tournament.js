@@ -2,20 +2,20 @@ import { createAction, handleActions } from 'redux-actions';
 
 const CHANGE_INPUT = 'tournament/CHANGE_INPUT';
 const CHANGE_SELECT = 'tournament/CHANE_SELECT';
-const INSERT_MATCHS = 'tournament/INSERT_NATCHS';
+const INSERT_MATCHES = 'tournament/INSERT_NATCHES';
 const INSERT_TURNS = 'tournament/INSERT_TURNS';
-const CLICK_MATCHS = 'tournament/CLICK_MATCHS';
+const CLICK_MATCHES = 'tournament/CLICK_MATCHES';
 const CLICK_TURNS = 'tournament/CLICK_TURNS';
-const REMOVE_MATCHS = 'tournament/REMOVE_MATCHS';
+const REMOVE_MATCHES = 'tournament/REMOVE_MATCHES';
 const REMOVE_TURNS = 'tournament/REMOVE_TURNS';
-const RESET_MATCHS = 'tournament/RESET_MATCHS';
+const RESET_MATCHES = 'tournament/RESET_MATCHES';
 const RESET_TURNS = 'tournament/RESET_TURNS';
 
 const initialState = !localStorage.getItem('tournament')
   ? {
       input: '',
       selectOption: '0',
-      matchs: [],
+      matches: [],
       turns: [],
     }
   : JSON.parse(localStorage.getItem('tournament'));
@@ -25,7 +25,7 @@ console.log(initialState);
 export const changeInput = createAction(CHANGE_INPUT, (input) => input);
 export const changeSelect = createAction(CHANGE_SELECT, (value) => value);
 
-export const insertMatchs = createAction(INSERT_MATCHS, (index, text) => ({
+export const insertMatches = createAction(INSERT_MATCHES, (index, text) => ({
   id: index,
   text,
   visible: false,
@@ -37,15 +37,15 @@ export const insertTurns = createAction(INSERT_TURNS, (index, text) => ({
   visible: false,
 }));
 
-export const clickMatchs = createAction(CLICK_MATCHS, (id) => id);
+export const clickMatches = createAction(CLICK_MATCHES, (id) => id);
 
 export const clickTurns = createAction(CLICK_TURNS, (id) => id);
 
-export const removeMatchs = createAction(REMOVE_MATCHS, (id) => id);
+export const removeMatches = createAction(REMOVE_MATCHES, (id) => id);
 
 export const removeTurns = createAction(REMOVE_TURNS, (id) => id);
 
-export const resetMatchs = createAction(RESET_MATCHS, () => {});
+export const resetMatches = createAction(RESET_MATCHES, () => {});
 
 export const resetTurns = createAction(RESET_TURNS, () => {});
 
@@ -59,17 +59,17 @@ const tournament = handleActions(
       ...state,
       selectOption: action.payload,
     }),
-    [INSERT_MATCHS]: (state, action) => ({
+    [INSERT_MATCHES]: (state, action) => ({
       ...state,
-      matchs: state.matchs.concat(action.payload),
+      matches: state.matches.concat(action.payload),
     }),
     [INSERT_TURNS]: (state, action) => ({
       ...state,
       turns: state.turns.concat(action.payload),
     }),
-    [CLICK_MATCHS]: (state, action) => ({
+    [CLICK_MATCHES]: (state, action) => ({
       ...state,
-      matchs: state.matchs.map((match) =>
+      matches: state.matches.map((match) =>
         match.id === action.payload
           ? { ...match, visible: !match.visible }
           : { ...match, visible: false },
@@ -83,17 +83,17 @@ const tournament = handleActions(
           : { ...turn, visible: false },
       ),
     }),
-    [REMOVE_MATCHS]: (state, action) => ({
+    [REMOVE_MATCHES]: (state, action) => ({
       ...state,
-      matchs: state.matchs.filter((match) => match.id !== action.payload),
+      matches: state.matches.filter((match) => match.id !== action.payload),
     }),
     [REMOVE_TURNS]: (state, action) => ({
       ...state,
       turns: state.turns.filter((turn) => turn.id !== action.payload),
     }),
-    [RESET_MATCHS]: (state, action) => ({
+    [RESET_MATCHES]: (state, action) => ({
       ...state,
-      matchs: [],
+      matches: [],
     }),
     [RESET_TURNS]: (state, action) => ({
       ...state,

@@ -2,11 +2,12 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Result from './pages/Result';
-import Simulation from './pages/Simulation';
+import SimulationHome from './pages/SimulationHome';
 import AddTurn from './pages/simulation/AddTurn';
 import MatchResult from './pages/simulation/MatchResult';
-import SimulationPage from './pages/SimulationPage';
+import SimulationDetails from './pages/SimulationDetails';
 import MergeMatch from './pages/simulation/MergeResult';
+import TournamentDetails from './pages/simulation/TournamentDetails';
 
 const App = () => {
   return (
@@ -15,10 +16,13 @@ const App = () => {
       <Routes exact={true}>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/result" element={<Result></Result>}></Route>
-        <Route path="/simulation" element={<Simulation></Simulation>}></Route>
+        <Route
+          path="/simulation"
+          element={<SimulationHome></SimulationHome>}
+        ></Route>
         <Route
           path="/simulation/:page"
-          element={<SimulationPage></SimulationPage>}
+          element={<SimulationDetails></SimulationDetails>}
         ></Route>
         <Route
           path="/simulation/:games/add-turn"
@@ -31,6 +35,10 @@ const App = () => {
         <Route
           path="/simulation/merge/:games"
           element={<MergeMatch></MergeMatch>}
+        ></Route>
+        <Route
+          path="/simulation/tournament/:page"
+          element={<TournamentDetails></TournamentDetails>}
         ></Route>
       </Routes>
     </div>

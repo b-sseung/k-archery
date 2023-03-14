@@ -17,7 +17,8 @@ const Record36 = ({ results, state, turns, click, remove, reset }) => {
 };
 
 export default connect(
-  ({ record36 }) => ({
+  ({ record36, mergeResult }) => ({
+    results: mergeResult.results,
     state: record36,
     turns: record36.records,
   }),

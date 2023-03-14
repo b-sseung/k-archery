@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const Simulation = () => {
+const SimulationHome = () => {
   return (
     <div>
       <div>
@@ -22,4 +22,4 @@ const Simulation = () => {
   );
 };
 
-export default Simulation;
+export default SimulationHome;
