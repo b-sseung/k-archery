@@ -16,20 +16,20 @@ const initialState = !localStorage.getItem('record15')
   : JSON.parse(localStorage.getItem('record15'));
 
 console.log(initialState);
-export const changeInput15 = createAction(CHANGE_INPUT, (input) => input);
-export const changeSelect15 = createAction(CHANGE_SELECT, (value) => value);
+export const changeInput = createAction(CHANGE_INPUT, (input) => input);
+export const changeSelect = createAction(CHANGE_SELECT, (value) => value);
 
-export const insert15 = createAction(INSERT, (index, text) => ({
+export const insert = createAction(INSERT, (index, text) => ({
   id: index,
   text,
   visible: false,
 }));
 
-export const click15 = createAction(CLICK, (id) => id);
+export const click = createAction(CLICK, (id) => id);
 
-export const remove15 = createAction(REMOVE, (id) => id);
+export const remove = createAction(REMOVE, (id) => id);
 
-export const reset15 = createAction(RESET, () => {});
+export const reset = createAction(RESET, () => {});
 
 const record15 = handleActions(
   {

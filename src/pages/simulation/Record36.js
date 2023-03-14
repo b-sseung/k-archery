@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { click36, remove36, reset36 } from '../../modules/record36';
+import { click, remove, reset } from '../../modules/record36';
 import RecordTurnContainer from '../../containers/RecordTurnContainer';
 
 const Record36 = ({ results, state, turns, click, remove, reset }) => {
@@ -23,8 +23,8 @@ export default connect(
     turns: record36.records,
   }),
   {
-    click: click36,
-    remove: remove36,
-    reset: reset36,
+    click: click,
+    remove: remove,
+    reset: reset,
   },
 )(Record36);
