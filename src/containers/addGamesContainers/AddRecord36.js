@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import AddRecord from '../../components/record/AddRecord';
+import AddGames from '../../components/AddGames';
 import {
   changeInput,
   changeSelect,
   insert,
   remove,
 } from '../../modules/record36';
-import { addRecordData } from '../../matchResultFunction/record_PC';
+import { addRecordDataPC } from '../../matchResultFunction/record';
 
 const AddRecord36 = ({
   url,
@@ -53,7 +53,7 @@ const AddRecord36 = ({
   };
 
   const onInsert = () => {
-    addRecordData({ text: input, games: url }).then((result) => {
+    addRecordDataPC({ text: input, games: url }).then((result) => {
       console.log(result);
       insert(selectOption, result);
       changeInput('');
@@ -79,14 +79,14 @@ const AddRecord36 = ({
   };
 
   return (
-    <AddRecord
+    <AddGames
       options={selectOptionArray}
       input={input}
       selectOption={selectOption}
       onChangeInput={onChangeInput}
       onChangeSelect={onChangeSelect}
       onSubmit={onSubmit}
-    ></AddRecord>
+    ></AddGames>
   );
 };
 

@@ -7,18 +7,14 @@ import Leaguematch from './simulation/Leaguematch';
 const SimulationPage = (results) => {
   const params = useParams();
 
-  return (
-    <div>
-      {params.page === 'record36' ? (
-        <Record36></Record36>
-      ) : params.page === 'record15' ? (
-        <Record15></Record15>
-      ) : params.page === 'tournament' ? (
-        <TournamentHome></TournamentHome>
-      ) : (
-        <Leaguematch></Leaguematch>
-      )}
-    </div>
+  return params.page === 'record36' ? (
+    <Record36></Record36>
+  ) : params.page === 'record15' ? (
+    <Record15></Record15>
+  ) : params.page === 'tournament' ? (
+    <TournamentHome></TournamentHome>
+  ) : (
+    <Leaguematch></Leaguematch>
   );
 };
 

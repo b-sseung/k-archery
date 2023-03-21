@@ -31,8 +31,8 @@ export const insertMatches = createAction(INSERT_MATCHES, (index, text) => ({
   visible: false,
 }));
 
-export const insertTurns = createAction(INSERT_TURNS, (index, text) => ({
-  id: index,
+export const insertTurns = createAction(INSERT_TURNS, (name, text) => ({
+  id: name,
   text,
   visible: false,
 }));

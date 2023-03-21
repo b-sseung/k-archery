@@ -4,23 +4,26 @@ import { useNavigate } from 'react-router-dom';
 import GoogleSheetSelect from '../components/GoogleSheetSelect';
 import { updateSheet } from '../modules/result';
 import { insert } from '../modules/mergeResult';
+import { insertTurns } from '../modules/tournament';
 import {
   getRanking,
+  setGroupAverRank,
+  setGroupRanking,
+  setMatchRanking,
   setPeopleMap,
   setPreRank,
-} from '../matchResultFunction/record';
-import RecordResultTable from '../components/record/RecordResultTable';
+} from '../matchResultFunction/tournament';
+import TournamentMatchResultTable from '../components/tournament/TournamentMatchResultTable';
 import { getSheetData } from '../api/Google';
 
-//기록경기 계산
-const RecordResultContainer = ({
-  match,
+const TournamentMatchResultContainer = ({
+  url,
   titles,
   sheet,
-  record36,
-  record15,
+  matches,
   updateSheet,
   insertTotalResult,
+  insertTurns,
 }) => {
   const navigate = useNavigate();
 
@@ -46,23 +49,29 @@ const RecordResultContainer = ({
   };
 
   const onClick = () => {
-    let peoples = new Map();
-    let datas = [];
+    const peoples = new Map();
 
-    if (match === 'record36') {
-      datas = record36;
-    } else if (match === 'record15') {
-      datas = record15;
-    }
-
-    setPeopleMap(datas, peoples);
+    setPeopleMap(matches, peoples);
 
     if (title !== '없음') {
       setPreRank(sheet, peoples);
     }
 
-    const finalRank = getRanking(peoples, limit);
+    const groups = [];
 
+    peoples.forEach((people) => {
+      if (!groups[people['team']]) {
+        groups[people['team']] = [];
+      }
+
+      groups[people['team']].push(people);
+    });
+
+    setMatchRanking(peoples, groups);
+    setGroupAverRank(peoples, groups);
+    setGroupRanking(peoples, groups);
+
+    const finalRank = getRanking(peoples, limit);
     setResult(finalRank);
   };
 
@@ -70,7 +79,8 @@ const RecordResultContainer = ({
     let name = prompt('결과를 구분하기 위해 이름을 입력해주세요.', '무제');
     console.log(result);
     insertTotalResult(name, result);
-    navigate(`/simulation/${match}`);
+    insertTurns(name, result);
+    navigate(`/simulation/tournament/${url}`);
   };
 
   return (
@@ -88,7 +98,9 @@ const RecordResultContainer = ({
       {result.length > 0 && (
         <div>
           <button onClick={onSaveClick}>저장하기</button>
-          <RecordResultTable result={result}></RecordResultTable>
+          <TournamentMatchResultTable
+            result={result}
+          ></TournamentMatchResultTable>
         </div>
       )}
     </div>
@@ -96,12 +108,11 @@ const RecordResultContainer = ({
 };
 
 export default connect(
-  ({ result, record36, record15, mergeResult }) => ({
+  ({ result, tournament, mergeResult }) => ({
     titles: result.titles,
     sheet: result.sheet,
-    record36: record36.records,
-    record15: record15.records,
+    matches: tournament.matches,
     results: mergeResult.results,
   }),
-  { updateSheet, insertTotalResult: insert },
-)(RecordResultContainer);
+  { updateSheet, insertTotalResult: insert, insertTurns },
+)(TournamentMatchResultContainer);

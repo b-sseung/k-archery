@@ -1,8 +1,4 @@
-export const dataSave = (text, state) => {
-  localStorage.setItem(text, JSON.stringify(state));
-};
-
-export const addRecordData = ({ text, games }) => {
+export const addRecordDataPC = ({ text, games }) => {
   const promise = new Promise((resolve, reject) => {
     let cutArray = text.split('\n');
     let result = [];
@@ -60,10 +56,12 @@ export const setPeopleMap = (data, peoples) => {
 export const setPreRank = (data, peoples) => {
   data.forEach((value) => {
     let [name, belong, rank] = value;
+    if (name === '이름') return;
+
     let key = `${name} ${belong}`;
 
     if (!peoples.has(key)) {
-      alert('해당 선수에 대한 기록이 없습니다.');
+      alert(`${key} 선수에 대한 기록이 없습니다.`);
     }
 
     let people = peoples.get(key);
@@ -92,7 +90,7 @@ export const getRanking = (peoples, limit) => {
               return p2.total[i] - p1.total[i];
             }
           }
-          return p2.preRank - p1.preRank;
+          return p1.preRank - p2.preRank;
         }
       }
     }

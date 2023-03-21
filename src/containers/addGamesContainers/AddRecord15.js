@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import AddRecord from '../../components/record/AddRecord';
+import AddGames from '../../components/AddGames';
 import {
   changeInput,
   changeSelect,
   insert,
   remove,
 } from '../../modules/record15';
-import { addRecordData } from '../../matchResultFunction/record_PC';
+import { addRecordDataPC } from '../../matchResultFunction/record';
 
 const AddRecord15 = ({
   url,
@@ -27,7 +27,7 @@ const AddRecord15 = ({
     </option>,
   ];
 
-  for (let i = 1; i <= 8; i++) {
+  for (let i = 1; i <= 5; i++) {
     selectOptionArray.push(
       <option key={i} value={i}>
         {i}회차
@@ -53,7 +53,7 @@ const AddRecord15 = ({
   };
 
   const onInsert = () => {
-    addRecordData({ text: input, games: url }).then((result) => {
+    addRecordDataPC({ text: input, games: url }).then((result) => {
       console.log(result);
       insert(selectOption, result);
       changeInput('');
@@ -79,14 +79,14 @@ const AddRecord15 = ({
   };
 
   return (
-    <AddRecord
+    <AddGames
       options={selectOptionArray}
       input={input}
       selectOption={selectOption}
       onChangeInput={onChangeInput}
       onChangeSelect={onChangeSelect}
       onSubmit={onSubmit}
-    ></AddRecord>
+    ></AddGames>
   );
 };
 

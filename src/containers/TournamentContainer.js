@@ -1,83 +1,38 @@
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {
-  changeInput,
-  changeSelect,
-  insertMatches,
-  clickMatches,
-  removeMatches,
-  resetMatches,
-  insertTurns,
-  clickTurns,
-  removeTurns,
-  resetTurns,
-} from '../modules/tournament';
+import { dataSave } from '../matchResultFunction/common';
+import TournamentMatch from '../components/tournament/TournamentMatch';
 
 const TournamentContainer = ({
-  page,
+  url,
   results,
-  matches,
-  turns,
-  changeInput,
-  changeSelect,
-  insertMatches,
-  clickMatches,
-  removeMatches,
-  resetMatches,
-  insertTurns,
-  clickTurns,
-  removeTurns,
-  resetTurns,
+  state,
+  data,
+  click,
+  remove,
+  reset,
 }) => {
-  let datas, insert, click, remove, reset;
-
-  if (page === 'matches') {
-    datas = matches;
-    insert = insertMatches;
-    click = clickMatches;
-    remove = removeMatches;
-    reset = resetMatches;
-  } else {
-    datas = turns;
-    insert = insertTurns;
-    click = clickTurns;
-    remove = removeTurns;
-    reset = resetTurns;
-  }
+  dataSave('tournament', state);
+  dataSave('mergeResult', results);
 
   return (
     <div>
-      {page === 'matches' && (
+      {url === 'matches' && (
         <button>
           <Link to={`/simulation/tournament/add-turn`}>경기 추가</Link>
         </button>
       )}
       <button>
-        <Link to={`/simulation/tournament-${page}/match-result`}>계산하기</Link>
+        <Link to={`/simulation/tournament-${url}/match-result`}>계산하기</Link>
       </button>
-      <button onClick={page === 'matches' ? resetMatches : resetTurns}>
-        초기화
-      </button>
+      <button onClick={reset}>초기화</button>
+      <TournamentMatch
+        data={data}
+        division={url}
+        onVisible={click}
+        onRemove={remove}
+      ></TournamentMatch>
     </div>
   );
 };
 
-export default connect(
-  ({ tournament, mergeResult }) => ({
-    results: mergeResult.results,
-    matches: tournament.matches,
-    turns: tournament.turns,
-  }),
-  {
-    changeInput,
-    changeSelect,
-    insertMatches,
-    clickMatches,
-    removeMatches,
-    resetMatches,
-    insertTurns,
-    clickTurns,
-    removeTurns,
-    resetTurns,
-  },
-)(TournamentContainer);
+export default TournamentContainer;

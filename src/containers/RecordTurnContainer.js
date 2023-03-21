@@ -1,7 +1,7 @@
 import React from 'react';
 import RecordTurn from '../components/record/RecordTurn';
 import { Link } from 'react-router-dom';
-import { dataSave } from '../matchResultFunction/record_PC';
+import { dataSave } from '../matchResultFunction/common';
 
 const RecordTurnContainer = ({
   url,
