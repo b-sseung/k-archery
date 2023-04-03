@@ -10,6 +10,7 @@ const REMOVE_MATCHES = 'tournament/REMOVE_MATCHES';
 const REMOVE_TURNS = 'tournament/REMOVE_TURNS';
 const RESET_MATCHES = 'tournament/RESET_MATCHES';
 const RESET_TURNS = 'tournament/RESET_TURNS';
+const MODIFY_TURNS_TITLE = 'tournament/MODIFY_TURNS_TITLE';
 
 const initialState = !localStorage.getItem('tournament')
   ? {
@@ -48,6 +49,11 @@ export const removeTurns = createAction(REMOVE_TURNS, (id) => id);
 export const resetMatches = createAction(RESET_MATCHES, () => {});
 
 export const resetTurns = createAction(RESET_TURNS, () => {});
+
+export const modifyTurnsTitle = createAction(
+  MODIFY_TURNS_TITLE,
+  (before, after) => ({ before: before, after: after }),
+);
 
 const tournament = handleActions(
   {
@@ -98,6 +104,14 @@ const tournament = handleActions(
     [RESET_TURNS]: (state, action) => ({
       ...state,
       turns: [],
+    }),
+    [MODIFY_TURNS_TITLE]: (state, action) => ({
+      ...state,
+      turns: state.turns.map((turn) =>
+        turn.id === action.payload.before
+          ? { ...turn, id: action.payload.after }
+          : { ...turn },
+      ),
     }),
   },
   initialState,

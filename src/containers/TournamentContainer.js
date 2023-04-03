@@ -10,6 +10,7 @@ const TournamentContainer = ({
   click,
   remove,
   reset,
+  modify,
 }) => {
   dataSave('tournament', state);
   dataSave('mergeResult', results);
@@ -30,6 +31,7 @@ const TournamentContainer = ({
         division={url}
         onVisible={click}
         onRemove={remove}
+        modify={modify}
       ></TournamentMatch>
     </div>
   );

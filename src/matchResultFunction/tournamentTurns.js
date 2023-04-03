@@ -1,80 +1,3 @@
-// 			//조별 순위 정렬
-// 			Collections.sort(entryList, new Comparator<Entry<String, People>>() {
-
-// 				@Override
-// 				public int compare(Entry<String, People> o1, Entry<String, People> o2) {
-// 					People p1 = o1.getValue();
-// 					People p2 = o2.getValue();
-
-// 					if (p1.rankScore < p2.rankScore) {
-// 						return 1;
-// 					} else if (p1.rankScore == p2.rankScore) {
-// 						if (p1.ave < p2.ave) {
-// 							return 1;
-// 						} else if (p1.ave == p2.ave) {
-// 							//변경해야 함.
-// 							return p1.matchRank - p2.matchRank;
-// 						} else {
-// 							return -1;
-// 						}
-// 					} else {
-// 						return -1;
-// 					}
-// 				}
-// 			});
-
-// 			int position3 = 1;
-// 			for (Entry<String, People> entry : entryList) {
-// 				entry.getValue().setTeamRank(position3);
-
-// 				HashMap<String, People> temp = list2.getOrDefault(position3, new HashMap<>());
-// 				temp.put(entry.getKey(), entry.getValue());
-// 				list2.put(position3, temp);
-
-// 				position3++;
-// 			}
-
-// 		}
-
-// 		List<Integer> list2Keys = new ArrayList<>(list2.keySet());
-// 		Collections.sort(list2Keys);
-
-// 		for(int key : list2Keys) {
-// 			HashMap<String, People> map = list2.get(key);
-// 			List<Entry<String, People>> entryList = new ArrayList<>(map.entrySet());
-
-// 			Collections.sort(entryList, new Comparator<Entry<String, People>>() {
-// 				@Override
-// 				public int compare(Entry<String, People> o1, Entry<String, People> o2) {
-// 					People p1 = o1.getValue();
-// 					People p2 = o2.getValue();
-
-// 					if (p1.ave < p2.ave) {
-// 						return 1;
-// 					} else if (p1.ave == p2.ave) {
-// 						return p1.prerank - p2.prerank;
-// 					} else {
-// 						return -1;
-// 					}
-// 				}
-
-// 			});
-
-// 			int position4 = 1;
-// 			for (Entry<String, People> entry : entryList) {
-// 				entry.getValue().setRank(people * (key - 1) + position4);
-
-// 				bw.write(entry.getValue().toString() + "\n");
-// 				position4++;
-// 			}
-
-// 		}
-
-// 		bw.flush();
-// 		bw.close();
-
-// 	}
-
 export const addTournamentMatchesDataPC = ({ text, games }) => {
   const promise = new Promise((resolve, reject) => {
     let cutArray = text.split('\n');
@@ -279,50 +202,26 @@ export const getRanking = (peoples, limit) => {
   return arrayPeoples;
 };
 
-function People({ team, name, belong }) {
-  this.team = team;
+function People({ name, belong }) {
   this.name = name;
   this.belong = belong;
   this.sumTotal = 0;
   this.shoot = 0;
   this.ave = 0;
-  this.winOrLose = [];
 
   this.preRank = -1;
-  this.matchRank = -1;
-  this.matchPoint = -1;
-  this.gameAveRank = -1;
-  this.gameAvePoint = -1;
-  this.sumPoint = 0;
-  this.teamRank = -1;
   this.rank = -1;
   this.points = 0;
 
-  this.addGame = ({ score, shoot, result }) => {
+  this.addGame = ({ score, shoot, ave, point }) => {
     this.sumTotal += score;
     this.shoot += shoot;
-    this.ave = this.sumTotal / this.shoot;
-    this.winOrLose.push(result);
+    this.ave += ave;
+    this.points += point;
   };
 
   this.setPreRank = (rank) => {
     this.preRank = rank;
-  };
-
-  this.setMatchRank = (rank) => {
-    this.matchRank = rank;
-    this.matchPoint = 8 - 1 * (rank - 1);
-    this.sumPoint += this.matchPoint;
-  };
-
-  this.setGameAveRank = (rank) => {
-    this.gameAveRank = rank;
-    this.gameAvePoint = 4 - 0.5 * (rank - 1);
-    this.sumPoint += this.gameAvePoint;
-  };
-
-  this.setTeamRank = (rank) => {
-    this.teamRank = rank;
   };
 
   this.setRank = (index, limit) => {

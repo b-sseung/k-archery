@@ -12,7 +12,7 @@ import {
   setMatchRanking,
   setPeopleMap,
   setPreRank,
-} from '../matchResultFunction/tournament';
+} from '../matchResultFunction/tournamentMatches';
 import TournamentMatchResultTable from '../components/tournament/TournamentMatchResultTable';
 import { getSheetData } from '../api/Google';
 
@@ -48,7 +48,7 @@ const TournamentMatchResultContainer = ({
     setTitle(e.target.value === '-1' ? '없음' : titles[e.target.value]);
   };
 
-  const onClick = () => {
+  const onClickMatches = () => {
     const peoples = new Map();
 
     setPeopleMap(matches, peoples);
@@ -75,11 +75,15 @@ const TournamentMatchResultContainer = ({
     setResult(finalRank);
   };
 
+  const onClickTurns = () => {
+    console.log('turns');
+  };
+
   const onSaveClick = () => {
     let name = prompt('결과를 구분하기 위해 이름을 입력해주세요.', '무제');
     console.log(result);
-    insertTotalResult(name, result);
-    insertTurns(name, result);
+    if (url === 'turns') insertTotalResult(name, result);
+    if (url === 'matches') insertTurns(name, result);
     navigate(`/simulation/tournament/${url}`);
   };
 
@@ -94,13 +98,19 @@ const TournamentMatchResultContainer = ({
         <GoogleSheetSelect onChangeSelect={onChangeSelect}></GoogleSheetSelect>
         {/* <p>※ 슛-오프로 구분할 경우 없음을 선택 후 임의로 수정해주시길 바랍니다.</p>       */}
       </div>
-      <button onClick={onClick}>계산하기</button>
+      <button onClick={url === 'matches' ? onClickMatches : onClickTurns}>
+        계산하기
+      </button>
       {result.length > 0 && (
         <div>
           <button onClick={onSaveClick}>저장하기</button>
-          <TournamentMatchResultTable
-            result={result}
-          ></TournamentMatchResultTable>
+          {url === 'matches' ? (
+            <TournamentMatchResultTable
+              result={result}
+            ></TournamentMatchResultTable>
+          ) : (
+            ''
+          )}
         </div>
       )}
     </div>

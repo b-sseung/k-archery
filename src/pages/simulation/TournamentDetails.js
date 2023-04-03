@@ -8,6 +8,7 @@ import {
   clickTurns,
   removeTurns,
   resetTurns,
+  modifyTurnsTitle,
 } from '../../modules/tournament';
 
 const TournamentDetails = ({
@@ -21,6 +22,7 @@ const TournamentDetails = ({
   clickTurns,
   removeTurns,
   resetTurns,
+  modifyTurnsTitle,
 }) => {
   const params = useParams();
   return params.page === 'matches' ? (
@@ -42,6 +44,7 @@ const TournamentDetails = ({
       click={clickTurns}
       remove={removeTurns}
       reset={resetTurns}
+      modify={modifyTurnsTitle}
     ></TournamentContainer>
   );
 };
@@ -60,5 +63,6 @@ export default connect(
     clickTurns,
     removeTurns,
     resetTurns,
+    modifyTurnsTitle,
   },
 )(TournamentDetails);

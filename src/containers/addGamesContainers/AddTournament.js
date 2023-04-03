@@ -7,7 +7,7 @@ import {
   insertMatches,
   removeMatches,
 } from '../../modules/tournament';
-import { addTournamentMatchesDataPC } from '../../matchResultFunction/tournament';
+import { addTournamentMatchesDataPC } from '../../matchResultFunction/tournamentMatches';
 
 const AddTournament = ({
   url,
