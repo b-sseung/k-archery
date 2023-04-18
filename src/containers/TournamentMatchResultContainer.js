@@ -5,14 +5,6 @@ import GoogleSheetSelect from '../components/GoogleSheetSelect';
 import { updateSheet } from '../modules/result';
 import { insert } from '../modules/mergeResult';
 import { insertTurns } from '../modules/tournament';
-import {
-  getRanking,
-  setGroupAverRank,
-  setGroupRanking,
-  setMatchRanking,
-  setPeopleMap,
-  setPreRank,
-} from '../matchResultFunction/tournamentMatches';
 import TournamentMatchResultTable from '../components/tournament/TournamentMatchResultTable';
 import { getSheetData } from '../api/Google';
 
@@ -21,6 +13,7 @@ const TournamentMatchResultContainer = ({
   titles,
   sheet,
   matches,
+  turns,
   updateSheet,
   insertTotalResult,
   insertTurns,
@@ -49,34 +42,58 @@ const TournamentMatchResultContainer = ({
   };
 
   const onClickMatches = () => {
-    const peoples = new Map();
+    import('../matchResultFunction/tournamentMatches').then(
+      ({
+        getRanking,
+        setGroupAverRank,
+        setGroupRanking,
+        setMatchRanking,
+        setPeopleMap,
+        setPreRank,
+      }) => {
+        const peoples = new Map();
 
-    setPeopleMap(matches, peoples);
+        setPeopleMap(matches, peoples);
 
-    if (title !== '없음') {
-      setPreRank(sheet, peoples);
-    }
+        if (title !== '없음') {
+          setPreRank(sheet, peoples);
+        }
 
-    const groups = [];
+        const groups = [];
 
-    peoples.forEach((people) => {
-      if (!groups[people['team']]) {
-        groups[people['team']] = [];
-      }
+        peoples.forEach((people) => {
+          if (!groups[people['team']]) {
+            groups[people['team']] = [];
+          }
 
-      groups[people['team']].push(people);
-    });
+          groups[people['team']].push(people);
+        });
 
-    setMatchRanking(peoples, groups);
-    setGroupAverRank(peoples, groups);
-    setGroupRanking(peoples, groups);
+        setMatchRanking(peoples, groups);
+        setGroupAverRank(peoples, groups);
+        setGroupRanking(peoples, groups);
 
-    const finalRank = getRanking(peoples, limit);
-    setResult(finalRank);
+        const finalRank = getRanking(peoples, limit);
+        setResult(finalRank);
+      },
+    );
   };
 
   const onClickTurns = () => {
-    console.log('turns');
+    import('../matchResultFunction/tournamentMatches').then(
+      ({ getRanking, setPeopleMap, setPreRank }) => {
+        const peoples = new Map();
+
+        setPeopleMap(turns, peoples);
+
+        if (title !== '없음') {
+          setPreRank(sheet, peoples);
+        }
+
+        const finalRank = getRanking(peoples, limit);
+        setResult(finalRank);
+      },
+    );
   };
 
   const onSaveClick = () => {
@@ -122,6 +139,7 @@ export default connect(
     titles: result.titles,
     sheet: result.sheet,
     matches: tournament.matches,
+    turns: tournament.turns,
     results: mergeResult.results,
   }),
   { updateSheet, insertTotalResult: insert, insertTurns },
